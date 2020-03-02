@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="./layui-v2.5.6/layui/css/layui.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/simpleAlert.css">
+<!--    <link rel="stylesheet/less" type="text/css" href="./css/index.less" />-->
+</head>
+<body class="layui-layout-body">
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo layui-anim layui-anim-fadein ">
+            <span><img src="./img/people_logo.png" alt=""></span>
+            后台管理系统 <br/>
+            <span class="en-text">background management systems</span>
+        </div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="./img/people_set.png">
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" id="dblChoseAlert"><a href="#"><img class="goback" src="./img/people_goback.png" alt=""></a></li>
+        </ul>
+    </div>
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="">
+                        <i class="layui-icon" style="font-size: 20px;color: white">&#xe68e;</i>
+                        <span class="li-title">首页</span>
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">
+                        <i class="layui-icon" style="font-size: 20px;color: white">&#xe6ed;</i>
+                        <span class="li-title">开课开会</span>
+                    </a>
+                </li><li class="layui-nav-item">
+                <a href="">
+                    <i class="layui-icon" style="font-size: 20px;color: white">&#xe65d;</i>
+                    <span class="li-title">录播课程</span>
+                </a>
+            </li>
+                <li class="layui-nav-item">
+                    <a href="">
+                        <i class="layui-icon" style="font-size: 20px;color: white">&#xe613;</i>
+                        <span class="li-title">组织机构</span>
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">
+                        <i class="layui-icon" style="font-size: 20px;color: white">&#xe62a;</i>
+                        <span class="li-title">课程表</span>
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">
+                        <i class="layui-icon" style="font-size: 20px;color: white">&#xe612;</i>
+                        <span class="li-title">用户管理</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;height: 100%">
+        <!-- header -->
+            <div class="layui-body-head">
+                <div class="layui-body-head-left" id="headNumber">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-md4">
+                            <div class="layui-col-md4-card">
+                                <div class="icon goclass"></div>
+                                <div class="card-count">
+                                    <div>开课数量</div>
+                                    <div class="number">367.000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4">
+                            <div class="layui-col-md4-card">
+                                <div class="icon teacher"></div>
+                                <div class="card-count">
+                                    <div>教师数量</div>
+                                    <div class="number">12.000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4">
+                            <div class="layui-col-md4-card">
+                                <div class="icon uplive"></div>
+                                <div class="card-count">
+                                    <div>直播次数</div>
+                                    <div class="number">430.000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-md4">
+                            <div class="layui-col-md4-card">
+                                <div class="icon uplive"></div>
+                                <div class="card-count">
+                                    <div>录制视频个数</div>
+                                    <div class="number">67.000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4">
+                            <div class="layui-col-md4-card">
+                                <div class="icon nodeNumber"></div>
+                                <div class="card-count">
+                                    <div>节点数</div>
+                                    <div class="number">26.000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4">
+                            <div class="layui-col-md4-card">
+                                <div class="icon clickNumber"></div>
+                                <div class="card-count">
+                                    <div>点播数</div>
+                                    <div class="number">367.000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-body-head-right">
+                    <div class="layui-row layui-col-space10 top">
+                        <div class="layui-col-md6 goclass">
+                            <div class="layui-col-md6-card">
+                                <div class="icon"></div>
+                                <div class="icon-alt">
+                                    <div>开课</div>
+                                    <div class="text-en">Open course</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6 meeting">
+                            <div class="layui-col-md6-card">
+                                <div class="icon meeting"></div>
+                                <div class="icon-alt">
+                                    <div>开会</div>
+                                    <div class="text-en">Open course</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-col-space10 bottom">
+                        <div class="layui-col-md4">
+                            <div class="layui-col-md4-card">
+                                <div class="icon"></div>
+                                <div class="title">直播巡看</div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4">
+                            <div class="layui-col-md4-card">
+                                <div class="icon template"></div>
+                                <div class="title">创建模板</div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4">
+                            <div class="layui-col-md4-card">
+                                <div class="icon organization"></div>
+                                <div class="title">组织机构</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        <!-- content-->
+            <div class="layui-body-content">
+                <div class="layui-body-content-left">
+                    <div class="select-card">
+                        <div class="select-card-head">
+                            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                                <a href="javascript:;">更多</a>
+                                <ul class="layui-tab-title">
+                                    <li class="layui-this">正在进行的课程</li>
+                                    <li>正在进行的会议</li>
+                                </ul>
+                                <div class="layui-tab-content">
+                                    <div class="layui-tab-item layui-show">
+                                        <div>
+                                            <img src="./img/aoshu.png" alt="">
+                                            <img src="./img/mks.png" alt="">
+                                            <img src="./img/english.png" alt="">
+                                            <img src="./img/ll.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="layui-tab-item item2">
+                                        <img src="./img/english.png" alt="">
+                                        <img src="./img/aoshu.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="charts">
+                        <div class="course-play">
+                            <div class="title">
+                                <i class="layui-icon" style="color:green;font-size: 20px">&#xe62a;</i>
+                                课程播放统计
+                                <div class="type-button">
+                                    <button type="button" class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary" style="border-color: lightseagreen;color: lightseagreen">天</button>
+                                    <button type="button" class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary">周</button>
+                                </div>
+                            </div>
+                            <div id="course-play" style="width: 380px;height:200px;"></div>
+                        </div>
+                        <div class="course-count">
+                            <div class="title">
+                                <i class="layui-icon" style="color: green;font-size: 20px">&#xe705;</i>
+                                课程统计
+                            </div>
+                            <div id="course-count" style="width: 360px;height:200px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-body-content-right">
+                    <div class="head">
+                        <div class="select-card">
+                            <div class="select-card-head">
+                                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                                    <ul class="layui-tab-title">
+                                        <li class="layui-this">课程模板</li>
+                                        <li>会议模板</li>
+                                    </ul>
+                                    <div class="layui-tab-content">
+                                        <div class="layui-tab-item layui-show">
+                                           <div class="item">
+                                               <i class="layui-icon">&#xe691;</i>
+                                               <a href="javascript:;">赵老师互动模板</a>
+                                               <button type="button" class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary">开课</button>
+                                           </div>
+                                            <div class="item">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                                <a href="javascript:;">赵老师数学模板</a>
+                                                <button type="button" class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary">开课</button>
+                                            </div>
+                                            <div class="item">
+                                                <i class="layui-icon" style="color: green">&#xe770;</i>
+                                                <a href="javascript:;">北京001会议室模板</a>
+                                                <button type="button" style="border-color:#479763;color: #479763 " class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary">会议</button>
+                                            </div>
+                                            <div class="item">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                                <a href="javascript:;">赵老师数学模板</a>
+                                                <button type="button" class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary">开课</button>
+                                            </div>
+                                            <div class="item">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                                <a href="javascript:;">赵老师数学模板</a>
+                                                <button type="button" class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary">开课</button>
+                                            </div>
+                                            <a href="javascript:;" class="more">更多模板 <i class="layui-icon">&#xe65b;</i></a>
+                                        </div>
+                                        <div class="layui-tab-item">会议模板正在开发中....</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="foot">
+                        <div class="select-card">
+                            <div class="select-card-head">
+                                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                                    <ul class="layui-tab-title">
+                                        <li style="font-size: 18px;bottom: 6px"><i class="layui-icon" style="color: green;font-size: 20px">&#xe630;</i> 待发布课程</li>
+                                    </ul>
+                                    <div class="layui-tab-content">
+                                        <div class="item">
+                                                <div class="icon"><img src="img/mks1.png" alt=""></div>
+                                                <div class="message">
+                                                    <a href="javascript:;">北京中关村农大马克思理论课程</a>
+                                                    <div>
+                                                        <span><i class="layui-icon">&#xe612;</i>&nbsp;&nbsp;雪情</span>
+                                                        <span><i class="layui-icon">&#xe68d;</i>&nbsp;&nbsp;2017-07-31</span>
+                                                        <span>14:31</span>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary">发布</button>
+                                            </div>
+                                        <div class="item">
+                                            <div class="icon"><img src="img/mks2.png" alt=""></div>
+                                            <div class="message">
+                                                <a href="javascript:;">北京中关村农大马克思理论课程</a>
+                                                <div>
+                                                    <span><i class="layui-icon">&#xe612;</i>&nbsp;&nbsp;雪情</span>
+                                                    <span><i class="layui-icon">&#xe68d;</i>&nbsp;&nbsp;2017-07-31</span>
+                                                    <span>14:31</span>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary">发布</button>
+                                        </div>
+                                        <div class="item">
+                                            <div class="icon"><img src="img/mks3.png" alt=""></div>
+                                            <div class="message">
+                                                <a href="javascript:;">北京中关村农大马克思理论课程</a>
+                                                <div>
+                                                    <span><i class="layui-icon">&#xe612;</i>&nbsp;&nbsp;雪情</span>
+                                                    <span><i class="layui-icon">&#xe68d;</i>&nbsp;&nbsp;2017-07-31</span>
+                                                    <span>14:31</span>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="layui-btn layui-btn-sm layui-btn layui-btn-radius layui-btn-primary">发布</button>
+                                        </div>
+                                        <a href="javascript:;" class="more">更多课例 <i class="layui-icon">&#xe65b;</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./layui-v2.5.6/layui/layui.js"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.10.3/less.min.js" ></script>-->
+<script src="./js/g2.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/simpleAlert.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element
+    });
+    $.ajax({
+        url:'./js/myData.js',
+        type:'get',
+        dataType:'jsonp',
+        jsonp: "callback",
+        jsonpCallback:'getData'
+    })
+        .done(function(data){
+            var data=data.data[0].number
+            console.log(data)
+            var numberDom=$("#headNumber .card-count .number")
+            for(var i=0;i<numberDom.length;i++){
+                numberDom[i].innerHTML=data[i]
+            }
+        })
+
+    $(function () {
+        $("#headNumber .icon").click(function () {
+            var doms=$(this).next().children()
+            console.log()
+            var onlyChoseAlert=  simpleAlert({
+                "content":$(doms[0]).text()+" : "+$(doms[1]).text(),
+                "buttons":{
+                    "关闭":function () {
+                        onlyChoseAlert.close();
+                    }
+                }
+            })
+        })
+        $("#dblChoseAlert").click(function () {
+            var dblChoseAlert = simpleAlert({
+                "content":"确定退出登录吗？",
+                "buttons":{
+                    "确定":function () {
+                        alert("退出登录成功");
+                        dblChoseAlert.close();
+                    },
+                    "取消":function () {
+                        dblChoseAlert.close();
+                    }
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>
